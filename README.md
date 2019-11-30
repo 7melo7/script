@@ -1,2 +1,2 @@
 # script
-used for storing my script
+This repository is used for storing my script
