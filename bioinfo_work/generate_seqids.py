@@ -5,12 +5,13 @@ from argparse import RawTextHelpFormatter
 
 parser = argparse.ArgumentParser(description="""
 	This script is used to generate seqids for MCScan analysis.
-	Author : Simple""", formatter_class=RawTextHelpFormatter
+	Author : Simple
+	Example: ./generate_seqids.py -i ath.bed -o seqids --bed -n 50""", formatter_class=RawTextHelpFormatter
 )
 parser.add_argument("-i", type=str, help="input file", default=None, dest="input_file")
-parser.add_argument("-o", type=str, help="output file", default="seqids", dest="output_file")
+parser.add_argument("-o", type=str, help="output file, default: seqids", default="seqids", dest="output_file")
 parser.add_argument("--bed", help="input bed file", action="store_true", default=True, dest="bed")
-parser.add_argument("-n", type=int, help="longest scaffold/chromsome counts to output", default=50, dest="n")
+parser.add_argument("-n", type=int, help="longest scaffold/chromsome counts to output, defalut: 50", default=50, dest="n")
 args = parser.parse_args()
 
 def in_bed_out(filename):
