@@ -30,7 +30,7 @@ def in_bed_out(filename):
 	return scaffold_list
 
 def write_in(filename, scaffold_list, n):
-	with open(filename, "w+") as f:
+	with open(filename, "a") as f:
 		seqids_str = ""
 		for i in range(n):
 			seqids_str += scaffold_list[i][0] + ","
