@@ -5,23 +5,34 @@
 # @Author     : S1mple
 #
 # Description :
-import math
+import random
+# 维护最大堆
+def max_heapify(heap, HeapSize, root):
+  left = 2 * root + 1
+  right = left + 1
+  larger = root
+  if left < HeapSize and heap[larger] < heap[left]:
+    larger = left
+  if right < HeapSize and heap[larger] < heap[right]:
+    larger = right
+  if larger != root:
+    heap[larger], heap[root] = heap[root], heap[larger]
+    max_heapify(heap, HeapSize, larger)
+#初始化最大堆
+def build_max_heap(heap):
+  HeapSize = len(heap)
+  for i in range((HeapSize - 2) // 2, -1, -1):
+    max_heapify(heap, HeapSize, i)
 
-def max_heapify(lt, i):
-	l = i*2
-	r = i*2 + 1
-	if l <= len(lt) and lt[l-1] > lt[i-1]:
-		largest = l
-	else: 
-		largest = i
-	if r <= len(lt) and lt[r-1] > lt[largest-1]:
-		largest = r
-	if largest != i:
-		lt[i-1], lt[largest-1] = lt[largest-1], lt[i-1]
-		max_heapify(lt, largest)
-
+def heap_sort(heap):
+  build_max_heap(heap)
+  for i in range(len(heap)-1, -1, -1):
+    heap[0], heap[i] = heap[i], heap[0]
+    max_heapify(heap, i, 0)
+  return heap
 
 if __name__ == "__main__":
-	lt = [16, 4, 10, 14 ,7, 9, 3, 2, 8, 1]
-	max_heapify(lt, 2)
+	lt = [12, 11, 13, 5, 6, 7]
+	print(lt)
+	heap_sort(lt)
 	print(lt)
